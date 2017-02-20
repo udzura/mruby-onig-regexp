@@ -93,7 +93,9 @@ MRuby::Gem::Specification.new('mruby-onig-regexp') do |spec|
     file libmruby_a => Dir.glob("#{libonig_objs_dir}/*#{objext}") if File.exists? oniguruma_lib
 
     file "#{dir}/src/mruby_onig_regexp.c" => oniguruma_lib
-    cc.include_paths << oniguruma_dir
+
+    self.cc.include_paths << oniguruma_dir
+    build.cc.include_paths << oniguruma_dir
   end
 
   if spec.respond_to? :search_package and spec.search_package 'onigmo'
